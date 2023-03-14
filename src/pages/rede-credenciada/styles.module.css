@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.title {
+  text-align: left;
+  align-self: flex-start;
+}
+
+.content {
+  min-height: 350px;
+}
+
+.list {
+  min-height: 350px;
+}
