@@ -1,9 +1,13 @@
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { useState } from "react";
 
-import { ResponseError, Loading, ProvidersResponse } from "./types";
 import { api } from "./../api/";
-import styles from "./styles.module.css";
+import styles from "@/styles/HealthCommunity.module.css";
+import {
+  Loading,
+  ProvidersResponse,
+  ResponseError,
+} from "@/types/HealthCommunity";
 
 const itemsPerPage = 8;
 
@@ -51,16 +55,14 @@ export default function HealthComunnityList() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Lista de hospitais</h1>
-      
+
       <Loading isLoading={isLoading} />
       <Error error={error} />
-      
+
       {isSuccess && (
         <div className={styles.list}>
           {data?.providers.map(provider => (
-            <p key={provider.urlSlug}>
-              {provider.name}
-            </p>
+            <p key={provider.urlSlug}>{provider.name}</p>
           ))}
         </div>
       )}
@@ -90,7 +92,7 @@ export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(
-    ["healthCommunity", "hospitals", "list", "1"],
+    ["healthCommunity", "hospitals", "list", 1],
     () => getHospitals()
   );
 
